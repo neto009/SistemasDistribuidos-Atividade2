@@ -14,10 +14,14 @@ public class ClientesPares {
             multicastSocket.joinGroup(dest);
 
             byte[] buf = new byte[512];
+
             DatagramPacket recv = new DatagramPacket(buf, buf.length);
-            multicastSocket.receive(recv);
-            String msg = new String(recv.getData());
-            System.out.println(msg);
+
+            for(int i = 0; i < 50; i++) {
+                multicastSocket.receive(recv);
+                String msg = new String(recv.getData());
+                System.out.println(msg);
+            }
 
         }catch(Exception e){
             e.printStackTrace();
